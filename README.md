@@ -266,6 +266,7 @@ tvmaze.peopleInfo(1, "crewcredits",['show'], function(error, response) {
 ### Show Updates
 
 Return a list of shows and the timestamp when they were updated
+
 **Example:** http://api.tvmaze.com/updates/shows
 ```sh
 tvmaze.showUpdates(function(error, response) {

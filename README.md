@@ -50,7 +50,7 @@ tvmaze.singleShow("Lost", "episodes", function(error, response) {
 });
 ```
 
-### Show Lookup
+## Show Lookup
 
 If you already know a show's tvrage, thetvdb or IMDB ID, then you can get the show information.  Pass either 'tvrage', 'thetvdb', or 'imdb' as the first parameter.
 
@@ -61,7 +61,7 @@ tvmaze.showLookup('tvrage',24493, function(error, response) {
     // handle errors and response
 });
 ```
-### People Search
+## People Search
 
 Return show information based on a person.
 
@@ -72,7 +72,7 @@ tvmaze.peopleSearch('lauren', function(error, response) {
     // handle errors and response
 });
 ```
-### Schedule
+## Schedule
 
 Return a complete list of episodes that air in a country on a date. Pass the countries ISO 3166-1 code as the first parameter, and the date as an ISO 8601 format.
 
@@ -99,10 +99,10 @@ tvmaze.fullSchedule(function(error, response) {
 });
 ```
 
-### All Show Information
+## All Show Information
 To retrieve all the information for a specific show, you must use the ID from the TVmaze.
 
-#### Main Information
+### Main Information
 
 You can get the episodes for a show, or you can embed additional information as per the TVmaze API
 
@@ -119,7 +119,7 @@ tvmaze.showById(3, "embed", "cast", function(error, response) {
 });
 ```
 
-#### Episode List
+### Episode List
 Return a list of episodes for the show. You can include specials as per the example below.
 
 **Example:** http://api.tvmaze.com/shows/3/episodes
@@ -134,7 +134,7 @@ tvmaze.showById(3, "episodes", "specials", function(error, response) {
     // handle errors and response
 });
 ```
-#### Episode by Number
+### Episode by Number
 Return one specific episode from a show given its season number and episode number.
 
 **Example:** http://api.tvmaze.com/shows/3/episodebynumber?season=1&number=1
@@ -144,17 +144,7 @@ tvmaze.showById(3, "episodesbynumber", [1,1], function(error, response) {
 });
 ```
 
-#### Episode by Number
-Return one specific episode from a show given its season number and episode number.
-
-**Example:** http://api.tvmaze.com/shows/3/episodebynumber?season=1&number=1
-```javascript
-tvmaze.showById(3, "episodesbynumber", [1,1], function(error, response) {
-    // handle errors and response
-});
-```
-
-#### Episodes by date
+### Episodes by date
 
 Return all episodes that aired on a specific date
 
@@ -166,7 +156,7 @@ tvmaze.showById(3, "episodesbydate", "2013-07-01", function(error, response) {
 });
 ```
 
-#### Show Seasons
+### Show Seasons
 
 Return a list of seasons for a show
 
@@ -177,7 +167,7 @@ tvmaze.showById(3, "seasons", function(error, response) {
     // handle errors and response
 });
 ```
-#### Show Cast
+### Show Cast
 
 Return a list of the cast for a show
 
@@ -188,7 +178,7 @@ tvmaze.showById(3, "cast", function(error, response) {
     // handle errors and response
 });
 ```
-#### Show AKAs
+### Show AKAs
 
 Return a list of aliases for a show
 
@@ -199,7 +189,7 @@ tvmaze.showById(3, "akas", function(error, response) {
     // handle errors and response
 });
 ```
-### Show Index
+## Show Index
 
 Return a list of all shows in the TVmaze database.  There are 250 shows per page and shows never change pages.
 The first page is page 0
@@ -212,11 +202,11 @@ tvmaze.showIndex(0, function(error, response) {
 });
 ```
 
-### Show People Information
+## Show People Information
 
 Return a information for a given person.  You can also embed additional information if needed.
 
-#### Show Main Information
+### Show Main Information
 
 **Example:** http://api.tvmaze.com/people/1
 
@@ -232,7 +222,7 @@ tvmaze.peopleInfo(1, "embed", "castcredits", function(error, response) {
     // handle errors and response
 });
 ```
-#### Show Cast Information
+### Show Cast Information
 Show cast credits for a given person.  You can also embed additional information such as the shows they've featured in.
 
 **Example:** http://api.tvmaze.com/people/1/castcredits
@@ -248,7 +238,7 @@ tvmaze.peopleInfo(1, "castcredits",['show'], function(error, response) {
 });
 ```
 
-#### Show Crew Information
+### Show Crew Information
 Show crew credits for a given person.  You can also embed additional information such as the shows they've featured in.
 
 **Example:** http://api.tvmaze.com/people/100/crewcredits
@@ -263,7 +253,7 @@ tvmaze.peopleInfo(1, "crewcredits",['show'], function(error, response) {
     // handle errors and response
 });
 ```
-### Show Updates
+## Show Updates
 
 Return a list of shows and the timestamp when they were updated
 

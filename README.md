@@ -21,6 +21,16 @@ tvmaze.search("Lost", function(error, response) {
 });
 ```
 
+## Testing
+
+tvmaze-mode utilises Mocha testing.  Simply run
+
+```sh
+npm test
+```
+
+to run the tests
+
 # Endpoints
 
 ## Search

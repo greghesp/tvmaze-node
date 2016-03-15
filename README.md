@@ -124,7 +124,7 @@ Return a list of episodes for the show. You can include specials as per the exam
 
 **Example:** http://api.tvmaze.com/shows/3/episodes
 ```javascript
-tvmaze.showById(3, "episodes", function(error, response) {
+tvmaze.showById(3, "episodes", false, function(error, response) {
     // handle errors and response
 });
 ```
@@ -163,7 +163,7 @@ Return a list of seasons for a show
 **Example:** http://api.tvmaze.com/shows/3/seasons
 
 ```javascript
-tvmaze.showById(3, "seasons", function(error, response) {
+tvmaze.showById(3, "seasons", false, function(error, response) {
     // handle errors and response
 });
 ```
@@ -174,7 +174,7 @@ Return a list of the cast for a show
 **Example:** http://api.tvmaze.com/shows/3/cast
 
 ```javascript
-tvmaze.showById(3, "cast", function(error, response) {
+tvmaze.showById(3, "cast", false, function(error, response) {
     // handle errors and response
 });
 ```
@@ -185,7 +185,7 @@ Return a list of aliases for a show
 **Example:** http://api.tvmaze.com/shows/3/akas
 
 ```javascript
-tvmaze.showById(3, "akas", function(error, response) {
+tvmaze.showById(3, "akas", false, function(error, response) {
     // handle errors and response
 });
 ```
@@ -211,7 +211,7 @@ Return a information for a given person.  You can also embed additional informat
 **Example:** http://api.tvmaze.com/people/1
 
 ```javascript
-tvmaze.peopleInfo(1, function(error, response) {
+tvmaze.peopleInfo(1, false, false, function(error, response) {
     // handle errors and response
 });
 ```
@@ -227,7 +227,7 @@ Show cast credits for a given person.  You can also embed additional information
 
 **Example:** http://api.tvmaze.com/people/1/castcredits
 ```javascript
-tvmaze.peopleInfo(1, "castcredits", function(error, response) {
+tvmaze.peopleInfo(1, "castcredits", false, function(error, response) {
     // handle errors and response
 });
 ```
@@ -243,13 +243,13 @@ Show crew credits for a given person.  You can also embed additional information
 
 **Example:** http://api.tvmaze.com/people/100/crewcredits
 ```javascript
-tvmaze.peopleInfo(1, "crewcredits", function(error, response) {
+tvmaze.peopleInfo(100, "crewcredits", false, function(error, response) {
     // handle errors and response
 });
 ```
 **Example:** http://api.tvmaze.com/people/100/crewcredits?embed=show
 ```javascript
-tvmaze.peopleInfo(1, "crewcredits",['show'], function(error, response) {
+tvmaze.peopleInfo(100, "crewcredits",['show'], function(error, response) {
     // handle errors and response
 });
 ```

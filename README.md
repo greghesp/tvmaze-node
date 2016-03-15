@@ -114,7 +114,7 @@ tvmaze.showById(3, false, false, function(error, response) {
 ```
 **Example:** http://api.tvmaze.com/shows/3?embed=cast
 ```javascript
-tvmaze.showById(3, "embed", "cast", function(error, response) {
+tvmaze.showById(3, "embed", ["cast"], function(error, response) {
     // handle errors and response
 });
 ```

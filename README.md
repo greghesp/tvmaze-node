@@ -108,7 +108,7 @@ You can get the episodes for a show, or you can embed additional information as 
 
 **Example:** http://api.tvmaze.com/shows/3
 ```javascript
-tvmaze.showById(3, function(error, response) {
+tvmaze.showById(3, false, false, function(error, response) {
     // handle errors and response
 });
 ```

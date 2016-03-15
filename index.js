@@ -1,20 +1,20 @@
 var request = require("request");
 
 module.exports = {
-      pullRequest: function(url, donePulledRequest) {
+     pullRequest: function(url, donePulledRequest) {
         request(url, function(error, response, body){
           if(error || response.statusCode === 404 || body.length == 2) {
              donePulledRequest(error || 'No results');
           }
           else {
-            donePulledRequest(null, JSON.parse(body));
+            donePulledRequest(null, body);
           }
         });
       },
 
       search: function(show, doneShow){
         var url =  "http://api.tvmaze.com/search/shows?q=" + show;
-        sails.hooks.tvmaze.pullRequest(url, doneShow)
+        module.exports.pullRequest(url, doneShow)
       },
 
       singleShow: function(show, episodes, doneSingleShow){
@@ -22,21 +22,21 @@ module.exports = {
 
         if(episodes){
           url = url + "&embed=episodes";
-          sails.hooks.tvmaze.pullRequest(url, doneSingleShow)
+          module.exports.pullRequest(url, doneSingleShow);
         }
         else {
-          sails.hooks.tvmaze.pullRequest(url, doneSingleShow)
+          module.exports.pullRequest(url, doneSingleShow);
         }
       },
 
       showLookup: function(source, id, doneShowLookup){
         var url =  "http://api.tvmaze.com/lookup/shows?" + source + "=" + id;
-        sails.hooks.tvmaze.pullRequest(url, doneShowLookup)
+        module.exports.pullRequest(url, doneShowLookup)
       },
 
       peopleSearch: function(name, donePeopleSearch){
         var url = "http://api.tvmaze.com/search/people?q=" + name;
-        sails.hooks.tvmaze.pullRequest(url, donePeopleSearch)
+        module.exports.pullRequest(url, donePeopleSearch)
       },
 
       schedule: function(country, date, doneSchedule){
@@ -53,12 +53,12 @@ module.exports = {
        } else {
          return doneSchedule('Something went wrong');
        }
-        sails.hooks.tvmaze.pullRequest(url, doneSchedule)
+        module.exports.pullRequest(url, doneSchedule)
       },
 
       fullSchedule: function(doneFullSchedule){
         var url = "http://api.tvmaze.com/schedule/full";
-        sails.hooks.tvmaze.pullRequest(url, doneFullSchedule)
+        module.exports.pullRequest(url, doneFullSchedule)
       },
 
       showById: function(id, type, options, doneShowById){
@@ -75,7 +75,7 @@ module.exports = {
               });
             }
             url = url.slice(0,-1);
-            sails.hooks.tvmaze.pullRequest(url, doneShowById)
+            module.exports.pullRequest(url, doneShowById)
             break;
 
           case "episodes":
@@ -85,7 +85,7 @@ module.exports = {
             if(options === "specials"){
               url = url + "?" + options + "=1";
             }
-            sails.hooks.tvmaze.pullRequest(url, doneShowById)
+            module.exports.pullRequest(url, doneShowById)
             break;
 
           case "episodesbynumber":
@@ -97,7 +97,7 @@ module.exports = {
                 url = url + item + "&number=";
               });
               url = url.slice(0,-8);
-              sails.hooks.tvmaze.pullRequest(url, doneShowById)
+              module.exports.pullRequest(url, doneShowById)
             } else {
               doneShowById(null,"This call needs to be provided with a season and episode number");
             }
@@ -107,7 +107,7 @@ module.exports = {
             // Get the episodes aired on a certain date
             if(options){
               url = url + "/episodesbydate?date=" + options;
-              sails.hooks.tvmaze.pullRequest(url, doneShowById)
+              module.exports.pullRequest(url, doneShowById)
             } else {
               doneShowById(null,'This call needs to be provided with a date as an option (2015-07-01)');
             }
@@ -116,30 +116,30 @@ module.exports = {
           case "seasons":
             // Get season information for a show
             url = url + "/seasons";
-            sails.hooks.tvmaze.pullRequest(url, doneShowById)
+            module.exports.pullRequest(url, doneShowById)
             break;
 
           case "cast":
             url = url + "/cast";
-            sails.hooks.tvmaze.pullRequest(url, doneShowById)
+            module.exports.pullRequest(url, doneShowById)
             break;
 
           case "akas":
             url = url + "/akas";
-            sails.hooks.tvmaze.pullRequest(url, doneShowById)
+            module.exports.pullRequest(url, doneShowById)
             break;
 
           default:
-            sails.hooks.tvmaze.pullRequest(url, doneShowById)
+            module.exports.pullRequest(url, doneShowById)
         }
       },
 
       showIndex: function(page, doneShowIdex){
         var url =  "http://api.tvmaze.com/shows";
-        if(page){
+        if(page || page === 0 ){
           url = url + "?page=" + page;
         }
-        sails.hooks.tvmaze.pullRequest(url, doneShowIdex)
+        module.exports.pullRequest(url, doneShowIdex)
       },
 
       peopleInfo: function(id, type, options, donePeopleInfo){
@@ -149,14 +149,7 @@ module.exports = {
           case "embed":
             if(options){
               url = url + "?embed=" + options;
-              sails.hooks.tvmaze.pullRequest(url, function(error, callback){
-                if (error) console.log(error)
-                else {
-                  console.log(callback);
-                }
-              });
-            } else {
-              console.log('You must use options for this call.  What are you trying to embed?');
+              module.exports.pullRequest(url, donePeopleInfo)
             }
             break;
 
@@ -168,7 +161,7 @@ module.exports = {
               });
             }
             url = url.slice(0,-1);
-            sails.hooks.tvmaze.pullRequest(url, donePeopleInfo)
+            module.exports.pullRequest(url, donePeopleInfo)
             break;
 
           case "crewcredits":
@@ -179,21 +172,16 @@ module.exports = {
               });
             }
             url = url.slice(0,-1);
-            sails.hooks.tvmaze.pullRequest(url, donePeopleInfo)
+            module.exports.pullRequest(url, donePeopleInfo)
             break;
 
           default:
-            sails.hooks.tvmaze.pullRequest(url, function(error, callback){
-              if (error) console.log(error)
-              else {
-                console.log(callback);
-              }
-            });
+            module.exports.pullRequest(url, donePeopleInfo)
         }
       },
 
       showUpdates: function(doneUpdating){
         url = "http://api.tvmaze.com/updates/shows";
-        sails.hooks.tvmaze.pullRequest(url, doneUpdating)
+        module.exports.pullRequest(url, doneUpdating)
       }
 };

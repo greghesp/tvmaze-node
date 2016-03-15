@@ -1,8 +1,11 @@
 {
   "name": "tvmaze-node",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A Node.js library for accessing TVmaze API",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/greghesp/tvmaze-node.git"
@@ -13,11 +16,17 @@
     "tvmaze api"
   ],
   "author": "Greg Hesp <greg.hesp@gmail.com> (http://www.greghesp.com)",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/greghesp/tvmaze-node/blob/master/LICENSE"
-    },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/greghesp/tvmaze-node/issues"
+  },
+  "dependencies": {
+    "request": "^2.69.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-things": "^0.2.0",
+    "mocha": "^2.4.5",
+    "request": "^2.69.0"
   }
 }
